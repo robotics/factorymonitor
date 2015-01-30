@@ -5,18 +5,18 @@ class SoundFile:
   def  __init__(self, signal):
     self.file = wave.open('test.wav', 'wb')
     self.signal = signal
-    self.sr = 96000
+    self.sr = 192000
 
   def write(self):
-    self.file.setparams((1, 2, self.sr, 96000*4, 'NONE', 'noncompressed'))
+    self.file.setparams((1, 2, self.sr, 192000*4, 'NONE', 'noncompressed'))
     self.file.writeframes(self.signal)
     self.file.close()
 
 # let's prepare signal
 duration = 4 # seconds
-samplerate = 96000 # Hz
+samplerate = 192000 # Hz
 samples = duration*samplerate
-frequency = 15000 # Hz
+frequency = 38000 # Hz
 period = samplerate / float(frequency) # in sample points
 omega = N.pi * 2 / period
 
