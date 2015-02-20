@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/install
+
+Name: audio_capture
+Description: Description of audio_capture
+Version: 0.2.7
+Cflags: 
+Libs: -L/home/satellite/factorymonitor/install/lib 
+Requires: 

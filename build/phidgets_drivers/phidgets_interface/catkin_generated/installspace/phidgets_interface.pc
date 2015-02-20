@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/install
+
+Name: phidgets_interface
+Description: Description of phidgets_interface
+Version: 0.0.0
+Cflags: -I/home/satellite/factorymonitor/install/include
+Libs: -L/home/satellite/factorymonitor/install/lib 
+Requires: nodelet phidgets_api roscpp sensor_msgs std_msgs std_srvs tf message_runtime

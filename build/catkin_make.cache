@@ -1,0 +1,2 @@
+phidgets_drivers/phidgets_api:phidgets_drivers/phidgets_drivers:phidgets_drivers/phidgets_imu:phidgets_drivers/phidgets_interface:phidgets_drivers/phidgets_ir:razor_imu_9dof
+-DCATKIN_DEVEL_PREFIX=/home/satellite/factorymonitor/devel -DCMAKE_INSTALL_PREFIX=/home/satellite/factorymonitor/install -G Unix Makefiles

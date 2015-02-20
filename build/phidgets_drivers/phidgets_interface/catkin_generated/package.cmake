@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "phidgets_interface")
+set(phidgets_interface_MAINTAINER "satellite <satellite@todo.todo>")
+set(phidgets_interface_DEPRECATED "")
+set(phidgets_interface_VERSION "0.0.0")
+set(phidgets_interface_BUILD_DEPENDS "message_generation" "nodelet" "phidgets_api" "phidgets_drivers" "roscpp" "std_msgs" "sensor_msgs" "std_srvs" "tf")
+set(phidgets_interface_RUN_DEPENDS "tf" "std_srvs" "sensor_msgs" "nodelet" "phidgets_api" "phidgets_drivers" "roscpp" "std_msgs" "message_runtime")
+set(phidgets_interface_BUILDTOOL_DEPENDS "catkin")

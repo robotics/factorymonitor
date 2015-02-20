@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "audio_common_msgs")
+set(audio_common_msgs_MAINTAINER "Austin Hendrix <namniart@gmail.com>")
+set(audio_common_msgs_DEPRECATED "")
+set(audio_common_msgs_VERSION "0.2.7")
+set(audio_common_msgs_BUILD_DEPENDS "message_generation")
+set(audio_common_msgs_RUN_DEPENDS "message_runtime")
+set(audio_common_msgs_BUILDTOOL_DEPENDS "catkin")

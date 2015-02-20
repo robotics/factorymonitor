@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/install
+
+Name: audio_common_msgs
+Description: Description of audio_common_msgs
+Version: 0.2.7
+Cflags: -I/home/satellite/factorymonitor/install/include
+Libs: -L/home/satellite/factorymonitor/install/lib 
+Requires: message_runtime

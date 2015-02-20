@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "audio_capture")
+set(audio_capture_MAINTAINER "Austin Hendrix <namniart@gmail.com>")
+set(audio_capture_DEPRECATED "")
+set(audio_capture_VERSION "0.2.7")
+set(audio_capture_BUILD_DEPENDS "roscpp" "audio_common_msgs" "libgstreamer0.10-dev" "libgstreamer-plugins-base0.10-dev")
+set(audio_capture_RUN_DEPENDS "roscpp" "audio_common_msgs" "libgstreamer0.10-0" "libgstreamer-plugins-base0.10-0" "gstreamer0.10-plugins-ugly" "gstreamer0.10-plugins-good")
+set(audio_capture_BUILDTOOL_DEPENDS "catkin")

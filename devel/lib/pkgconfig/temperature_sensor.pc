@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/devel
+
+Name: temperature_sensor
+Description: Description of temperature_sensor
+Version: 0.0.0
+Cflags: -I/home/satellite/factorymonitor/src/temperature_sensor/include
+Libs: -L/home/satellite/factorymonitor/devel/lib 
+Requires: roscpp rospy std_msgs

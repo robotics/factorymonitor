@@ -1,0 +1,10 @@
+prefix=/home/satellite/factorymonitor/build/phidgets_drivers/phidgets_api
+exec_prefix=/home/satellite/factorymonitor/build/phidgets_drivers/phidgets_api
+libdir=/home/satellite/factorymonitor/devel/lib
+includedir=/home/satellite/factorymonitor/devel/include/libphidget21
+
+Name: libphidget
+Description: Phidgets library
+Version: 2.1.8.20130723
+Libs: -L${libdir} -lphidget21
+Cflags: -I${includedir}

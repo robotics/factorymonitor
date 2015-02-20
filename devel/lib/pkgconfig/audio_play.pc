@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/devel
+
+Name: audio_play
+Description: Description of audio_play
+Version: 0.2.7
+Cflags: 
+Libs: -L/home/satellite/factorymonitor/devel/lib 
+Requires: 

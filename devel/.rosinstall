@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/satellite/factorymonitor/devel/setup.sh

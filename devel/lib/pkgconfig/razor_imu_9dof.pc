@@ -1,0 +1,8 @@
+prefix=/home/satellite/factorymonitor/devel
+
+Name: razor_imu_9dof
+Description: Description of razor_imu_9dof
+Version: 1.0.5
+Cflags: 
+Libs: -L/home/satellite/factorymonitor/devel/lib 
+Requires: 
