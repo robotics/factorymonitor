@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC    -shared -Wl,-soname,libphidgets_api.so -o /home/satellite/factorymonitor/devel/lib/libphidgets_api.so CMakeFiles/phidgets_api.dir/src/phidget.cpp.o CMakeFiles/phidgets_api.dir/src/imu.cpp.o CMakeFiles/phidgets_api.dir/src/ir.cpp.o /home/satellite/factorymonitor/devel/lib/libphidget21.so -Wl,-rpath,/home/satellite/factorymonitor/devel/lib: 

@@ -1,8 +1,0 @@
-prefix=/home/satellite/factorymonitor/devel
-
-Name: phidgets_ir
-Description: Description of phidgets_ir
-Version: 0.2.1
-Cflags: -I/home/satellite/factorymonitor/src/phidgets_drivers/phidgets_ir/include
-Libs: -L/home/satellite/factorymonitor/devel/lib -lphidgets_ir
-Requires: geometry_msgs nodelet phidgets_api roscpp sensor_msgs std_msgs std_srvs tf

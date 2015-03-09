@@ -1,8 +1,0 @@
-prefix=/home/satellite/factorymonitor/install
-
-Name: sound_play
-Description: Description of sound_play
-Version: 0.2.7
-Cflags: -I/home/satellite/factorymonitor/install/include
-Libs: -L/home/satellite/factorymonitor/install/lib 
-Requires: message_runtime actionlib_msgs

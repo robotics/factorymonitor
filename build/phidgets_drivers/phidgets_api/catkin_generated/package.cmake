@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "phidgets_api")
-set(phidgets_api_MAINTAINER "Murilo FM <muhrix@gmail.com>, Ivan Dryanovski <ccnyroboticslab@gmail.com>")
-set(phidgets_api_DEPRECATED "")
-set(phidgets_api_VERSION "0.2.1")
-set(phidgets_api_BUILD_DEPENDS "libusb-1.0-dev")
-set(phidgets_api_RUN_DEPENDS "libusb-1.0")
-set(phidgets_api_BUILDTOOL_DEPENDS "catkin")

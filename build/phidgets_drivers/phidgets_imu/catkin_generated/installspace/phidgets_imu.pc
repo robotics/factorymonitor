@@ -1,8 +1,0 @@
-prefix=/home/satellite/factorymonitor/install
-
-Name: phidgets_imu
-Description: Description of phidgets_imu
-Version: 0.2.1
-Cflags: -I/home/satellite/factorymonitor/install/include -I/usr/include
-Libs: -L/home/satellite/factorymonitor/install/lib -lphidgets_imu -l:/usr/lib/x86_64-linux-gnu/libboost_thread.so -l:/usr/lib/x86_64-linux-gnu/libpthread.so
-Requires: geometry_msgs nodelet pluginlib phidgets_api roscpp sensor_msgs std_msgs std_srvs tf

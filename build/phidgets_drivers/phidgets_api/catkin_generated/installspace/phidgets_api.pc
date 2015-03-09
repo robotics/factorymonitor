@@ -1,8 +1,0 @@
-prefix=/home/satellite/factorymonitor/install
-
-Name: phidgets_api
-Description: Description of phidgets_api
-Version: 0.2.1
-Cflags: -I/home/satellite/factorymonitor/install/include
-Libs: -L/home/satellite/factorymonitor/install/lib -lphidgets_api
-Requires: 
