@@ -1,0 +1,7 @@
+<launch>
+<node pkg="phidgets_interface" type="phidgets_interface_node" name="phidgets_interface_node" output="screen"/>
+<node pkg="phidgets_interface" type="phidgets_temperature_node" name="phidgets_temperature_node" output="screen"/>
+<node pkg="phidgets_interface" type="phidgets_pressure_node" name="phidgets_pressure_node" output="screen"/>
+<node pkg="phidgets_interface" type="phidgets_humidity_node" name="phidgets_humidity_node" output="screen"/>
+</launch>
+
