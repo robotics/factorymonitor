@@ -9,7 +9,7 @@ pressure = 0;
 humidity = 0;
 light = 0;
 def main():
-    s = serial.Serial("/dev/ttyACM0",baudrate=115200)
+    s = serial.Serial("/dev/ttyACM0",baudrate=115200,timeout=1)
     temperature_pub = rospy.Publisher('temperature',Temperature,queue_size=10)
     humidity_pub = rospy.Publisher('humidity',RelativeHumidity,queue_size=10)
     pressure_pub = rospy.Publisher('pressure',FluidPressure,queue_size=10)

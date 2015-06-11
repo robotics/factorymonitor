@@ -1,10 +1,8 @@
 <launch>
-<!-- Launch razor IMU node -->
 <node pkg="razor_imu_9dof" type="node.py" name="node" output="screen">
-  <param name="device" type="string" value="/dev/ttyUSB0" />
+  <param name="device" type="string" value="/dev/ttyUSB1" />
 </node>
 <node pkg="razor_imu_9dof" type="orient_to_tf.py" name="quat_to_tf" output="screen"/>
 <node pkg="razor_imu_9dof" type="knock_sensor.py" name="knock_sensor" output="screen"/>
-<!-- Start sensor_hub node -->
 <node pkg="sensor_hub" type="sensor_hub.py" name="sensor_hub" output="screen"/>
 </launch>
