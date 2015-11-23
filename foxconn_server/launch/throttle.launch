@@ -1,0 +1,3 @@
+<launch>
+  <node name="temp_throttler" type="throttle" pkg="topic_tools" args="messages /temperature 1 /temperature_throttled" />
+</launch>
