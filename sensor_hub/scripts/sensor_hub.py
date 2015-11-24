@@ -9,7 +9,7 @@ pressure = 0;
 humidity = 0;
 light = 0;
 def main():
-    s = serial.Serial("/dev/ttyACM0",baudrate=115200,timeout=1)
+    s = serial.Serial("/dev/ttyACM1",baudrate=115200,timeout=1)
     temperature_pub = rospy.Publisher('temperature',Temperature,queue_size=10)
     humidity_pub = rospy.Publisher('humidity',RelativeHumidity,queue_size=10)
     pressure_pub = rospy.Publisher('pressure',FluidPressure,queue_size=10)
@@ -18,29 +18,30 @@ def main():
     rospy.loginfo("Sensor Hub node started")
 
     while not rospy.is_shutdown():
-        data = s.readline()
+        msg = s.readline()
+	data = msg.split()
         t = rospy.Time.now()
         try:
-            temp1 = float(data[2:7])
-            pressure = float(data[8:14])
+            temp1 = float(data[1])
+            pressure = float(data[2])
+            temp2 = float(data[4])
+            humidity = float(data[5])
+            light = float(data[7])
             msg = FluidPressure()
             msg.header.stamp = t
             msg.fluid_pressure = pressure
             msg.variance = 0
             pressure_pub.publish(msg)
-            temp2 = float(data[16:22])
             msg = Temperature()
             msg.header.stamp = t
             msg.temperature = temp2
             msg.variance = 0
             temperature_pub.publish(msg)
-            humidity = float(data[23:28])
             msg = RelativeHumidity()
             msg.header.stamp = t
             msg.relative_humidity = humidity
             msg.variance = 0
             humidity_pub.publish(msg)
-            light = float(data[30:-1])
             msg = Illuminance()
             msg.header.stamp = t
             msg.illuminance = light

@@ -7,6 +7,7 @@ from thread import *
 import threading
 from Queue import Queue 
 from std_msgs.msg import Int32
+from sensor_msgs.msg import *
 
 #Socket Specific globals
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,7 +23,12 @@ def logger():
     print "help"
 
 def temperature_callback(data):
-    msg = str(int(time.time())) + " " + "temperature" + str(data.data) + '\n'
+    msg = str(int(time.time())) + "\t" + "temperature1" + "\t" + str(data.temperature) + '\n'
+    lock.acquire()
+    q.put(msg)
+    lock.release()
+def pressure_callback(data):
+    msg = str(int(time.time())) + "\t" + "pressure1" + "\t" + str(data.fluid_pressure) + '\n'
     lock.acquire()
     q.put(msg)
     lock.release()
@@ -33,13 +39,15 @@ def main():
     rospy.init_node('foxserver',anonymous=True)
     server.bind((HOST,PORT))
     server.listen(5)
-    rate = rospy.Rate(1)
+    r = rospy.Rate(10)
     inputs = [ server ]
     outputs = []
 #Subscribers:
-    rospy.Subscriber("temperature_throttled", Int32, temperature_callback)
+    rospy.Subscriber("temperature_throttled", Temperature, temperature_callback)
+    rospy.Subscriber("pressure_throttled", FluidPressure, pressure_callback)
     while not rospy.is_shutdown():
-        readable,writable,exceptional = select.select(inputs,outputs,inputs)
+      try:
+        readable,writable,exceptional = select.select(inputs,outputs,inputs,0.1)
         for s in readable:
             if s is server:
                 connection, client_address = s.accept()
@@ -56,14 +64,19 @@ def main():
                     if s in outputs:
                         outputs.remove(s)
                         inputs.remove(s)
-                        s.close()
-        for s in writable:
-            try:
-                lock.acquire()
-                s.sendall(q.get())
-                lock.release()
-            except:
-                pass
+                    s.close()
+	if not q.empty():
+	    lock.acquire()
+	    msg = q.get()
+	    lock.release()
+	    with open("data.log", "a") as myfile:
+		myfile.write(msg)
+	    for s in writable:
+	        try:
+	    	    s.send(msg)
+		except:
+		    print "Exception"
+		
         for s in exceptional:
             print >>sys.stderr, 'handling exceptional condition for', s.getpeername()
             # Stop listening for input on the connection
@@ -71,7 +84,8 @@ def main():
             if s in outputs:
                 outputs.remove(s)
             s.close()
-        rate.sleep()
+      except KeyboardInterrupt:
+	break
     server.close()
 
 
