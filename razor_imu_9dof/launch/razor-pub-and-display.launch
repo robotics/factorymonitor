@@ -1,8 +1,0 @@
-<launch>
-  <arg name="device_port" default="/dev/ttyUSB0" />
-  <node pkg="razor_imu_9dof" type="node.py" name="node" output="screen">
-        <param name="device" type="string" value="$(arg device_port)" />
-  </node>
-  <node pkg="razor_imu_9dof" type="display_3D_visualization.py" name="display_3D_visualization_node" output="screen">
-  </node>
-</launch>
