@@ -1,4 +1,6 @@
 <launch>
   <node name="temperature_throttler" type="throttle" pkg="topic_tools" args="messages /temperature 1 /temperature_throttled" />
   <node name="pressure_throttler" type="throttle" pkg="topic_tools" args="messages /pressure 1 /pressure_throttled" />
+  <node name="humidity_throttler" type="throttle" pkg="topic_tools" args="messages /humidity 1 /humidity_throttled" />
+  <node name="illuminance_throttler" type="throttle" pkg="topic_tools" args="messages /illuminance 1 /illuminance_throttled" />
 </launch>
