@@ -32,6 +32,16 @@ def pressure_callback(data):
     lock.acquire()
     q.put(msg)
     lock.release()
+def humidity_callback(data):
+    msg = str(int(time.time())) + "\t" + "humidity1" + "\t" + str(data.relative_humidity) + '\n'
+    lock.acquire()
+    q.put(msg)
+    lock.release()
+def illuminance_callback(data):
+    msg = str(int(time.time())) + "\t" + "illuminance1" + "\t" + str(data.illuminance) + '\n'
+    lock.acquire()
+    q.put(msg)
+    lock.release()
 
 
 def main():
@@ -45,6 +55,8 @@ def main():
 #Subscribers:
     rospy.Subscriber("temperature_throttled", Temperature, temperature_callback)
     rospy.Subscriber("pressure_throttled", FluidPressure, pressure_callback)
+    rospy.Subscriber("humidity_throttled", RelativeHumidity, humidity_callback)
+    rospy.Subscriber("illuminance_throttled", Illuminance, illuminance_callback)
     while not rospy.is_shutdown():
       try:
         readable,writable,exceptional = select.select(inputs,outputs,inputs,0.1)
@@ -56,7 +68,7 @@ def main():
                 inputs.append(connection)
                 outputs.append(connection)
             else:
-                data = s.recv(1024)
+                data = s.recv(2048)
                 if data:
                     print data
                 else:
@@ -69,7 +81,7 @@ def main():
 	    lock.acquire()
 	    msg = q.get()
 	    lock.release()
-	    with open("data.log", "a") as myfile:
+	    with open("/home/satellite/data.log", "a") as myfile:
 		myfile.write(msg)
 	    for s in writable:
 	        try:
