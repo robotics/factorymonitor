@@ -9,7 +9,7 @@
   <arg name="use_png"           default="false"/>
   <arg name="jpeg_quality"      default="90"/>
   <arg name="png_level"         default="1"/>
-  <arg name="depth_method"      default="opengl"/>
+  <arg name="depth_method"      default="opencl"/>
   <arg name="depth_device"      default="-1"/>
   <arg name="reg_method"        default="opencl"/>
   <arg name="reg_devive"        default="-1"/>
