@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "change_viewer");
   ros::NodeHandle nh;
-  ros::Subscriber sub = nh.subscribe<PointCloud>("/satellite1/sd/points", 1, callback);
+  ros::Subscriber sub = nh.subscribe<PointCloud>("kinect2/sd/points", 1, callback);
   pub = nh.advertise<std_msgs::Int64>("commotion",10);
   ros::spin();
 }
