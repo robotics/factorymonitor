@@ -21,6 +21,9 @@ def main():
     while not rospy.is_shutdown():
         msg = s.readline()
 	data = msg.split()
+        if not data:
+            rospy.logerr("No Data Received")
+            rospy.signal_shutdown("No data Received")
         t = rospy.Time.now()
         try:
             temp1 = float(data[1])
