@@ -16,6 +16,7 @@ def main():
     light_pub = rospy.Publisher('illuminance',Illuminance,queue_size=10)
     rospy.init_node('sensor_hub',anonymous=True)
     rospy.loginfo("Sensor Hub node started")
+    s.write('b')
 
     while not rospy.is_shutdown():
         msg = s.readline()
@@ -50,6 +51,7 @@ def main():
         except rospy.ROSInterruptException:
             raise
         except:
+            s.write('s')
             pass
 if __name__ == '__main__':
     try:
