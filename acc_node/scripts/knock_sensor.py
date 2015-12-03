@@ -8,7 +8,7 @@ from std_msgs.msg import Float32
 import tf
 prev_acc = np.array([0,0,0])
 jerk = deque(maxlen=5)
-pub = rospy.Publisher('/satellite/knock',Float32,queue_size = 1)
+pub = rospy.Publisher('knock',Float32,queue_size = 1)
 threshold = 0.5;
 def imu_handle(msg):
     global prev_acc
