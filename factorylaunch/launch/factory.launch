@@ -1,8 +1,8 @@
 <launch>
 <include file="$(find factorylaunch)/launch/kinect2_bridge.launch" ns="$(env MACHINE)" />
 <group ns="$(env MACHINE)">
-  <node pkg="razor_imu_9dof" type="node.py" name="node" output="screen">
-    <param name="device" type="string" value="/dev/ttyUSB1" />
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="node" output="screen">
+    <param name="port" type="string" value="/dev/imu" />
   </node>
   <node pkg="razor_imu_9dof" type="orient_to_tf.py" name="quat_to_tf" output="screen"/>
   <node pkg="razor_imu_9dof" type="knock_sensor.py" name="knock_sensor" output="screen"/>
