@@ -6,7 +6,7 @@ import time
 from thread import *
 import threading
 from Queue import Queue 
-from std_msgs.msg import Int32
+from std_msgs.msg import *
 from sensor_msgs.msg import *
 
 #Socket Specific globals
@@ -21,27 +21,47 @@ lock = threading.Lock()
 
 def logger():
     print "help"
+class satellite():
+    def __init__(self, num):
+        self.i = num
+        self.subscribe()
+    def subscribe(self):
+        rospy.Subscriber("/satellite"+str(self.i)+"/temperature", Temperature, self.temperature_callback)
+        rospy.Subscriber("/satellite"+str(self.i)+"/pressure", FluidPressure, self.pressure_callback)
+        rospy.Subscriber("/satellite"+str(self.i)+"/humidity", RelativeHumidity, self.humidity_callback)
+        rospy.Subscriber("/satellite"+str(self.i)+"/illuminance", Illuminance, self.illuminance_callback)
+        rospy.Subscriber("/satellite"+str(self.i)+"/commotion", Int64, self.commotion_callback)
 
-def temperature_callback(data):
-    msg = str(int(time.time())) + "\t" + "temperature1" + "\t" + str(data.temperature) + '\n'
-    lock.acquire()
-    q.put(msg)
-    lock.release()
-def pressure_callback(data):
-    msg = str(int(time.time())) + "\t" + "pressure1" + "\t" + str(data.fluid_pressure) + '\n'
-    lock.acquire()
-    q.put(msg)
-    lock.release()
-def humidity_callback(data):
-    msg = str(int(time.time())) + "\t" + "humidity1" + "\t" + str(data.relative_humidity) + '\n'
-    lock.acquire()
-    q.put(msg)
-    lock.release()
-def illuminance_callback(data):
-    msg = str(int(time.time())) + "\t" + "illuminance1" + "\t" + str(data.illuminance) + '\n'
-    lock.acquire()
-    q.put(msg)
-    lock.release()
+    def temperature_callback(self,data):
+        msg = str(int(time.time())) + "\t" + "temperature"+str(self.i) + "\t" + str(data.temperature) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
+    def pressure_callback(self, data):
+        msg = str(int(time.time())) + "\t" + "pressure"+str(self.i) + "\t" + str(data.fluid_pressure) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
+    def humidity_callback(self, data):
+        msg = str(int(time.time())) + "\t" + "humidity"+str(self.i) + "\t" + str(data.relative_humidity) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
+    def illuminance_callback(self, data):
+        msg = str(int(time.time())) + "\t" + "illuminance"+str(self.i) + "\t" + str(data.illuminance) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
+    def commotion_callback(self, data):
+        msg = str(int(time.time())) + "\t" + "commotion"+str(self.i) + "\t" + str(data.data) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
+    def knock_callback(self, data):
+        msg = str(int(time.time())) + "\t" + "knock"+str(self.i) + "\t" + str(data.data) + '\n'
+        lock.acquire()
+        q.put(msg)
+        lock.release()
 
 
 def main():
@@ -52,11 +72,12 @@ def main():
     r = rospy.Rate(10)
     inputs = [ server ]
     outputs = []
+    s1 = satellite(1)
+    s2 = satellite(2)
+    s3 = satellite(3)
+    s4 = satellite(4)
+    s5 = satellite(5)
 #Subscribers:
-    rospy.Subscriber("temperature_throttled", Temperature, temperature_callback)
-    rospy.Subscriber("pressure_throttled", FluidPressure, pressure_callback)
-    rospy.Subscriber("humidity_throttled", RelativeHumidity, humidity_callback)
-    rospy.Subscriber("illuminance_throttled", Illuminance, illuminance_callback)
     while not rospy.is_shutdown():
       try:
         readable,writable,exceptional = select.select(inputs,outputs,inputs,0.1)
@@ -68,7 +89,10 @@ def main():
                 inputs.append(connection)
                 outputs.append(connection)
             else:
-                data = s.recv(2048)
+                try:
+                    data = s.recv(2048)
+                except:
+                    rospy.logerr("Data Recv Problem")
                 if data:
                     print data
                 else:
