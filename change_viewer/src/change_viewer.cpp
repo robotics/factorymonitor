@@ -17,13 +17,11 @@ ros::Publisher pub;
 void callback(const PointCloud::ConstPtr& msg)
 {
   pcl::ExtractIndices<pcl::PointXYZ> extract;
-  ROS_INFO("Cloud: width = %d, height = %d", msg->width, msg->height);
   octree.switchBuffers();
   octree.setInputCloud(msg);
   octree.addPointsFromInputCloud();
   std::vector<int> newPointIdxVector;
   octree.getPointIndicesFromNewVoxels(newPointIdxVector);
-  ROS_INFO("Indices_changed = %lu", newPointIdxVector.size());
   std_msgs::Int64 msg_publish;
   msg_publish.data = newPointIdxVector.size();
   pub.publish(msg_publish);

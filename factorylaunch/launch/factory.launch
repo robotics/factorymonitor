@@ -3,7 +3,7 @@
 <include file="$(find factorylaunch)/launch/razor-pub.launch" ns="$(env MACHINE)" />
 <group ns="$(env MACHINE)">
   <node pkg="acc_node" type="knock_sensor.py" name="knock_sensor" output="screen"/>
-  <node pkg="sensor_hub" type="sensor_hub.py" name="sensor_hub" output="screen"/>
-  <node pkg="change_viewer" type="change_viewer" name="change_viewer" output="screen"/>
+  <node pkg="sensor_hub" type="sensor_hub.py" name="sensor_hub" respawn="true" output="screen"/>
+  <node pkg="change_viewer" type="change_viewer" name="change_viewer" respawn="true" output="screen"/>
 </group>
 </launch>
