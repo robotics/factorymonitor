@@ -23,7 +23,8 @@ void callback(const PointCloud::ConstPtr& msg)
   std::vector<int> newPointIdxVector;
   octree.getPointIndicesFromNewVoxels(newPointIdxVector);
   std_msgs::Int64 msg_publish;
-  msg_publish.data = newPointIdxVector.size();
+  if (newPointIdxVector.size()<20000)
+    msg_publish.data = newPointIdxVector.size();
   pub.publish(msg_publish);
 
 }
